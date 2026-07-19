@@ -1,3 +1,4 @@
+from book import Book
 __all__ = [
     "Library",
 ]
@@ -6,36 +7,51 @@ class Library:
     def __init__(self):
         self.library = []
 
-    def add_book(self, title, author, price):
+    def add_book(self, title, auther, price):
         if int(price) < 0:
             print("Price cannot be negative.")
             return
-
-        self.library.extend([title, author, price])
-        print("Book added.")
-
+        book = Book(title,auther,price)
+        self.library.append(book)
+        print("Book added")
     def remove_book(self, title):
-        if title in self.library:
-            index = self.library.index(title)
-            del self.library[index : index + 3]
-            print("Book removed.")
-        else:
+            for book in self.library:
+                if book.title == title:
+                    self.library.remove(book)
+                    print("Book removed.")
+                    return
+
             print("Book not found.")
 
-    def show_list_library(self):
-        for book in range(0, len(self.library), 3):
-            print(f"Book  : {self.library[book]}")
-            print(f"Author: {self.library[book + 1]}")
-            print(f"Cost  : {self.library[book + 2]}")
+    def show_books(self):
+        print("-" * 20)
+        for book in self.library:
+            book.show_info()
             print("-" * 20)
+            
+            
+    def update_price(self,title,new_price):
+        for book in self.library:
+            if book.title == title:
+                book.change_price(new_price)
+                return
+        else:
+            print("book not found")
+            
+    def find_book(self,title):
+        for book in self.library:
+            if book.title ==title:
+                return book
+        return None
+        
 
 # lib = Library()
+
 # lib.add_book("mmd", "nas", "1234")
 # lib.add_book("mmd", "nas", "1234")
-# lib.show_list_library()
+# lib.add_book("mmd", "nas", "1234")
 # lib.remove_book("mmd")
-# lib.add_book("ali", "nas", "-1234")
-# lib.show_list_library()
-# print(lib.library)
+
+# lib.show_books()
 
 
