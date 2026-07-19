@@ -19,3 +19,6 @@ class Book():
     
     def __len__(self):
         return len( self.title)
+    
+    def __eq__(self, other):
+        return self.price  == other.price
