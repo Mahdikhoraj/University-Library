@@ -10,3 +10,9 @@ class Validations:
             return True
         else:
             return False
+        
+    @staticmethod
+    def is_valid_price(price):
+        if price >= 0:
+            return True
+        return False
